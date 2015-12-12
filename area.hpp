@@ -1,6 +1,7 @@
+#pragma once
 #include <string>
 
-namespace qhg {
+namespace qhi {
 	class Area {
 	public:
 		virtual std::string getDescription() const;

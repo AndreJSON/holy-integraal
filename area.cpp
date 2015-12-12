@@ -1,5 +1,5 @@
 #include "area.hpp"
 
-std::string qhg::Area::getDescription () const {
+std::string qhi::Area::getDescription () const {
 	return "";
 }
