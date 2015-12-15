@@ -4,14 +4,14 @@ FLAGS = -std=c++11 -Wall -Wextra
 OBJS = world.o area.o
 
 game.out: game.hpp game.cpp world.hpp area.hpp $(OBJS)
-	$(CC) $(FlAGS) -o game.out game.cpp $(OBJS)
+	$(CC) $(FLAGS) -o game.out game.cpp $(OBJS)
 	@echo "----------DONE!----------"
 
 world.o:
-	$(CC) $(FlAGS) -c world.cpp
+	$(CC) $(FLAGS) -c world.cpp
 
 area.o:
-	$(CC) $(FlAGS) -c area.cpp
-
+	$(CC) $(FLAGS) -c area.cpp
+	
 clean:
 	rm -f *.o *.out
