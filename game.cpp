@@ -1,24 +1,36 @@
 #include "game.hpp"
 using namespace qhi;
-using std::cout;
-using std::endl;
+using std::cout; using std::endl; using std::cin; using std::getline;
 
 int main(void) {
 	bool playing = true;
 	World w;
 	fillWorld(w);
-
 	introduce();
 
 	while(playing) {
+		cout << getInput(5);
 		playing = false;
 	}
 
 	return 0;
 }
 
-std::string qhi::getInput() {
-	return "";
+int qhi::getInput(int numOfOptions) {
+	std::string input;
+	getline(cin,input);
+	int num;
+	try {
+		num = std::stoi(input,nullptr);
+	} catch(...) {
+		num = -1;
+	}
+	if(num >= 0 && num < numOfOptions) {
+		return num;
+	} else {
+		cout << "That is not a valid action. Please try again." << endl;
+		return getInput(numOfOptions);
+	}
 }
 
 void qhi::introduce() {
