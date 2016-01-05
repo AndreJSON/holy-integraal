@@ -1,6 +1,7 @@
 #include "connection.hpp"
 
 qhi::Connection::Connection(std::string desc) : Area(desc) {
+	guardianDefeated = false;
 }
 
 qhi::Connection::~Connection() {

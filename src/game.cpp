@@ -58,14 +58,24 @@ void qhi::introduce() {
 	cout << "The only thing that can stop this calamity and unite the" << endl;
 	cout << "people, is if a new, considerably smarter man would come along." << endl;
 	cout << "But the only way to get an IQ of that magnitude would be to drink" << endl;
-	cout << "from the artifact that has since long fallen in to oblivion, the" << endl;
+	cout << "from the artifact that has since long fallen into oblivion, the" << endl;
 	cout << "very same artifact that raised Gauss to his divine status." << endl;
 	cout << "The Holy Integraal." << endl << endl << endl << endl;
 }
 
 void qhi::fillWorld(World &w) {
-	w.addArea(TYPE_OPENAREA, "You are in the middle of nowhere."); 		//0
-	w.addArea(TYPE_OPENAREA, "You are at a road fork.");				//1
-	w.addArea(TYPE_CONNECTION, "You are on a long tortuous path.");		//2
+	w.addArea(TYPE_OPENAREA, "You are in the middle of nowhere."); 																//0
+	w.addArea(TYPE_OPENAREA, "You are at a road fork.");																		//1
+	w.addArea(TYPE_CONNECTION, "You are on a long tortuous path.");																//2
+	w.addArea(TYPE_OPENAREA, "You see a tavern and decide to enter it. Inside ***");											//3
+	w.addArea(TYPE_OPENAREA, "You approach a beautiful statue of gold.");														//4
+	w.addArea(TYPE_OPENAREA, "You enter some sort of Bazaar. Merchants are all around you screaming to get their goods sold.");	//5
+	w.addArea(TYPE_OPENAREA, "You are at the edge of a huge dark forest.");														//6
+
 	w.attachAreas(0,1,SOUTH,NORTH);
+	w.attachAreas(0,4,WEST,EAST);
+	w.attachAreas(1,2,WEST,ENTRANCE);
+	w.attachAreas(1,3,EAST,WEST);
+	w.attachAreas(2,5,EXIT,WEST);
+	w.attachAreas(5,6,EAST,WEST);
 }
