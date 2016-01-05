@@ -11,10 +11,17 @@ std::string qhi::Area::getDescription () const {
 	return description;
 }
 
-qhi::Area& qhi::Area::getNeighbour(int direction) const {
+bool qhi::Area::existsNeighbour (int direction) const {
 	auto n = neighbours.find(direction);
 	if(n != neighbours.end())
-		return *(n->second);
+		return true;
+	return false;
+}
+
+qhi::Area* qhi::Area::getNeighbour(int direction) const {
+	auto n = neighbours.find(direction);
+	if(n != neighbours.end())
+		return n->second;
 	throw std::out_of_range("Tried to access area in an invalid direction.");
 }
 

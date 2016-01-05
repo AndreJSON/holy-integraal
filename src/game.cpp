@@ -13,17 +13,40 @@ using std::cout; using std::endl; using std::cin;
 int main(void) {
 	World w;
 	fillWorld(w);
-	Area& a = w.getStartingArea();
+	Area *a = w.getStartingArea();
 	bool playing = true;
 	introduce();
 
 	while(playing) {
-		cout << a.getDescription();
-		cout << getInput(5);
-		playing = false;
+		cout << endl << a->getDescription();
+		handleOptions(&a);
 	}
 
 	return 0;
+}
+
+void qhi::handleOptions(Area **a) {
+	int paths = (**a).getAreaType() == 1? 4 : 2;
+	cout << endl << endl << "What do you do?" << endl;
+	if((**a).getAreaType() == 1) { //open area
+		cout << "[1] Go north" << endl;
+		cout << "[2] Go east" << endl;
+		cout << "[3] Go south" << endl;
+		cout << "[4] Go west" << endl;
+	} else { //connection
+		cout << "[1] Continue on" << endl;
+		cout << "[2] Go back" << endl;
+	}
+	int input = getInput(paths);
+	if (input <= paths) {
+		if((**a).existsNeighbour(input)) {
+			*a = (**a).getNeighbour(input);
+		} else {
+			cout << endl << "It looks rather boring in that direction, so you decide to not go there." << endl;
+		}
+	} else {
+		input -= paths;
+	}
 }
 
 int qhi::getInput(int numOfOptions) {
@@ -35,7 +58,7 @@ int qhi::getInput(int numOfOptions) {
 	} catch(...) {
 		num = -1;
 	}
-	if(num >= 0 && num < numOfOptions) {
+	if(num > 0 && num <= numOfOptions) {
 		return num;
 	} else {
 		cout << "That is not a valid action. Please try again." << endl;
@@ -71,6 +94,7 @@ void qhi::fillWorld(World &w) {
 	w.addArea(TYPE_OPENAREA, "You approach a beautiful statue of gold.");														//4
 	w.addArea(TYPE_OPENAREA, "You enter some sort of Bazaar. Merchants are all around you screaming to get their goods sold.");	//5
 	w.addArea(TYPE_OPENAREA, "You are at the edge of a huge dark forest.");														//6
+	w.addArea(TYPE_OPENAREA, "You wander through the forest. After a while you decide to stop. It is dark all around you.");	//7
 
 	w.attachAreas(0,1,SOUTH,NORTH);
 	w.attachAreas(0,4,WEST,EAST);
@@ -78,4 +102,6 @@ void qhi::fillWorld(World &w) {
 	w.attachAreas(1,3,EAST,WEST);
 	w.attachAreas(2,5,EXIT,WEST);
 	w.attachAreas(5,6,EAST,WEST);
+	w.attachAreas(6,7,SOUTH,NORTH);
+	w.attachAreas(7,7,NORTH,WEST);
 }

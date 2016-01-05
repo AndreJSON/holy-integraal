@@ -14,6 +14,6 @@ namespace qhi {
 		virtual ~Connection();
 		virtual std::string getDescription() const override;
 		virtual int getAreaType() const override;
-		virtual bool permittedDirection(int direction) override;
+		virtual bool permittedDirection(int direction) const override;
 	};
 }

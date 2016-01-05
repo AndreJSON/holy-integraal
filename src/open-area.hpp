@@ -8,6 +8,6 @@ namespace qhi {
 		OpenArea(std::string desc);
 		virtual ~OpenArea();
 		virtual int getAreaType() const override;
-		virtual bool permittedDirection(int direction) override;
+		virtual bool permittedDirection(int direction) const override;
 	};
 }

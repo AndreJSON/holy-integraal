@@ -15,7 +15,7 @@ int qhi::Connection::getAreaType() const {
 	return 2;
 }
 
-bool qhi::Connection::permittedDirection(int direction) {
+bool qhi::Connection::permittedDirection(int direction) const {
 	if(direction == 1 || direction == 2)
 		return true;
 	else

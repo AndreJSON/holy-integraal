@@ -12,8 +12,9 @@ namespace qhi {
 		virtual ~Area();
 		virtual std::string getDescription() const;
 		virtual int getAreaType() const = 0;
-		Area& getNeighbour(int direction) const; //returns a reference to the area in given direction.
+		bool existsNeighbour(int direction) const;
+		Area* getNeighbour(int direction) const; //returns a reference to the area in given direction.
 		void addNeighbour(Area* ap, int direction);
-		virtual bool permittedDirection(int direction) = 0;
+		virtual bool permittedDirection(int direction) const = 0;
 	};
 }

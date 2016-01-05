@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 namespace qhi {
+	void handleOptions(Area **a);
 	void introduce();
 	int getInput(int);
 	void fillWorld(World &w);
