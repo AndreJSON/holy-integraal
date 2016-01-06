@@ -9,7 +9,7 @@ qhi::Area::~Area() {
 }
 
 std::string qhi::Area::getDescription (int playerIQ) const {
-	return description + (existsActor()? getActor().getDescription(playerIQ):"");
+	return description + (existsActor()? "\n"+getActor().getDescription(playerIQ):"");
 }
 
 bool qhi::Area::existsNeighbour (int direction) const {

@@ -8,7 +8,7 @@ qhi::Advisor::~Advisor() {
 }
 
 std::string qhi::Advisor::getDescription(int) const{
-	return description + advice;
+	return description + "\n" + advice;
 }
 
 bool qhi::Advisor::isDefeated(int) const {

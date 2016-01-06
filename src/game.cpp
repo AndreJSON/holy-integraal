@@ -115,7 +115,7 @@ void qhi::fillWorld(World &w) {
 	w.addArea(TYPE_CONNECTION, "You walk onto a rickety suspension bridge. Below you is a seemingly bottomless pit.");			//12
 	w.addArea(TYPE_CONNECTION, "You keep walking on the suspension bridge. It seems very close to falling apart.");				//13
 	w.addArea(TYPE_CONNECTION, "You walk even further on the suspension bridge. You can see a ruin at the end of it.");			//14
-	w.addArea(TYPE_OPENAREA, "As you enter, you see an immensely strong lightsource hover in the middle of the room.");			//15											//99
+	w.addArea(TYPE_OPENAREA, "As you enter, you see an immensely strong lightsource hover in the middle of the room.");			//15
 
 	w.attachAreas(0,1,SOUTH,NORTH);
 	w.attachAreas(0,4,WEST,EAST);
@@ -137,7 +137,7 @@ void qhi::fillWorld(World &w) {
 	w.attachAreas(14,15,EXIT,EAST);
 
 	w.addAdvisor(4, "A priest is standing by the statue, he approaches you and says:", "Oh my Gauss, you look totally lost.\nLet me give you some help, all free of cost.\nWhen you are lost and all around is black.\nTake two steps forward and one step back.");
-
+	w.addRiddler(2, "A mouse is blocking your path, he stares at you and says:", "You have proven yourself a true man.\nMove onwards and continue your plan.", "Welcome my fellow stranger,\nbeyond me lies only danger.\nIf passage requests thee,\na question you must answer me.\n\nCalling yourself a man,\nany person can.\nBut to put meaning behind such talk,\ndown how many roads must one walk?");
 	//Finally call the arrangeWorld method to make the world ready for usage.
 	w.arrangeWorld();
 }

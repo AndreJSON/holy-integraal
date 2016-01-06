@@ -44,6 +44,11 @@ void qhi::World::addAdvisor(int index, std::string description, std::string advi
 	areas[index]->setActor(actors.back());
 }
 
+void qhi::World::addRiddler(int index, std::string description, std::string advice, std::string riddle) {
+	actors.push_back(new Riddler(description, advice, riddle)); 
+	areas[index]->setActor(actors.back());
+}
+
 void qhi::World::arrangeWorld() {
 	a = getStartingArea();
 }
