@@ -2,6 +2,7 @@
 
 qhi::Area::Area(std::string desc) {
 	description = desc;
+	hasActor = false;
 }
 
 qhi::Area::~Area() {	
@@ -31,4 +32,19 @@ void qhi::Area::addNeighbour(Area* ap, int direction) {
 	} else {
 		throw std::out_of_range("Tried to add neighbouring area to an invalid direction.");
 	}
+}
+
+bool qhi::Area::existsActor() const {
+	return hasActor;
+}
+
+const qhi::Actor& qhi::Area::getActor() const {
+	if(!hasActor)
+		throw std::out_of_range("Tried to get actor from an area that doesn't have an actor.");
+	return *npc;
+}
+
+void qhi::Area::setActor(Actor *ap) {
+	hasActor = true;
+	npc = ap;
 }

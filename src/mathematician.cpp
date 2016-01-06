@@ -1,6 +1,6 @@
 #include "mathematician.hpp"
 
-qhi::Mathematician::Mathematician(std::string desc, std::string comp, std::string mock, Item *rew) : Item(desc) {
+qhi::Mathematician::Mathematician(std::string desc, std::string comp, std::string mock, Item *rew) : Actor(desc) {
 	compliment = comp;
 	mockery = mock;
 	reward = rew;

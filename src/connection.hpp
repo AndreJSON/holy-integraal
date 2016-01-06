@@ -7,7 +7,6 @@
 namespace qhi {
 	class Connection : public Area {
 	private:
-		//Actor guardian;
 		bool guardianDefeated;
 	public:
 		Connection(std::string desc);
