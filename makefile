@@ -1,14 +1,18 @@
 .DEFAULT_GOAL := game.out
 CC = g++
 FLAGS = -std=c++11 -Wall -Wextra
-OBJS = world.o area.o open-area.o connection.o
+OBJS = world.o actor.o area.o open-area.o connection.o
 
 game.out: src/game.hpp src/game.cpp $(OBJS)
 	$(CC) $(FLAGS) -o game.out src/game.cpp $(OBJS)
+	rm -f $(OBJS)
 	@echo "----------DONE!----------"
 
 world.o: src/world.hpp src/world.cpp
 	$(CC) $(FLAGS) -c src/world.cpp
+
+actor.o: src/actor.hpp src/actor.cpp
+	$(CC) $(FLAGS) -c src/actor.cpp
 
 area.o: src/area.hpp src/area.cpp
 	$(CC) $(FLAGS) -c src/area.cpp

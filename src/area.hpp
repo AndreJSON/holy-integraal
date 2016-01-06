@@ -1,4 +1,5 @@
 #pragma once
+#include "actor.hpp"
 #include <string>
 #include <map>
 

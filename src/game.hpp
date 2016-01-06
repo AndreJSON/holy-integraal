@@ -1,5 +1,4 @@
 #pragma once
-#include "area.hpp"
 #include "world.hpp"
 #include <iostream>
 #include <stdio.h>
