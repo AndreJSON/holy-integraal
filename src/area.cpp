@@ -8,8 +8,8 @@ qhi::Area::Area(std::string desc) {
 qhi::Area::~Area() {	
 }
 
-std::string qhi::Area::getDescription () const {
-	return description;
+std::string qhi::Area::getDescription (int playerIQ) const {
+	return description + (existsActor()? getActor().getDescription(playerIQ):"");
 }
 
 bool qhi::Area::existsNeighbour (int direction) const {

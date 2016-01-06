@@ -16,7 +16,7 @@ int main(void) {
 	introduce();
 
 	while(true) {
-		cout << endl << w.getCurrentArea()->getDescription();
+		cout << endl << w.getCurrentArea()->getDescription(w.getIQ());
 		if(w.finalAreaReached()) {
 			endGame();
 			return 0;
@@ -106,26 +106,38 @@ void qhi::fillWorld(World &w) {
 	w.addArea(TYPE_OPENAREA, "You see a tavern and decide to enter it. Inside ***");											//3
 	w.addArea(TYPE_OPENAREA, "You approach a beautiful statue of gold.");														//4
 	w.addArea(TYPE_OPENAREA, "You enter some sort of Bazaar. Merchants are all around you screaming to get their goods sold.");	//5
-	w.addArea(TYPE_OPENAREA, "You are at the edge of a huge dark forest.");														//6
+	w.addArea(TYPE_CONNECTION, "You are at the edge of a huge dark forest.");													//6
 	w.addArea(TYPE_OPENAREA, "You wander through the forest. After a while you decide to stop. It is dark all around you.");	//7
 	w.addArea(TYPE_OPENAREA, "You wander through the forest. After a while you decide to stop. It is dark all around you.");	//8
 	w.addArea(TYPE_OPENAREA, "You wander through the forest. After a while you decide to stop. It is dark all around you.");	//9
-	w.addArea(TYPE_OPENAREA, "As you enter, you see an immensely strong lightsource hover in the middle of the room.");			//10											//99
+	w.addArea(TYPE_CONNECTION, "You enter a huge, old looking building. Every wall inside is covered by huge bookcases.");		//10
+	w.addArea(TYPE_OPENAREA, "You find a secret path leading through the wall. You follow it and enter a small dark room.");	//11
+	w.addArea(TYPE_CONNECTION, "You walk onto a rickety suspension bridge. Below you is a seemingly bottomless pit.");			//12
+	w.addArea(TYPE_CONNECTION, "You keep walking on the suspension bridge. It seems very close to falling apart.");				//13
+	w.addArea(TYPE_CONNECTION, "You walk even further on the suspension bridge. You can see a ruin at the end of it.");			//14
+	w.addArea(TYPE_OPENAREA, "As you enter, you see an immensely strong lightsource hover in the middle of the room.");			//15											//99
 
 	w.attachAreas(0,1,SOUTH,NORTH);
 	w.attachAreas(0,4,WEST,EAST);
 	w.attachAreas(1,2,WEST,ENTRANCE);
 	w.attachAreas(1,3,EAST,WEST);
 	w.attachAreas(2,5,EXIT,WEST);
-	w.attachAreas(5,6,EAST,WEST);
-	w.attachAreas(6,7,SOUTH,NORTH);
+	w.attachAreas(5,6,EAST,ENTRANCE);
+	w.attachAreas(5,10,SOUTH,ENTRANCE);
+	w.attachAreas(10,11,EXIT,SOUTH);
+	w.attachAreas(6,7,EXIT,NORTH);
 	w.attachAreas(7,8,WEST,WEST);
 	w.attachAreas(7,8,EAST,EAST);
 	w.attachAreas(7,8,SOUTH,NORTH);
 	w.attachAreas(8,9,SOUTH,EAST);
 	w.attachAreas(9,9,WEST,SOUTH);
+	w.attachAreas(9,12,NORTH,ENTRANCE);
+	w.attachAreas(12,13,EXIT,ENTRANCE);
+	w.attachAreas(13,14,EXIT,ENTRANCE);
+	w.attachAreas(14,15,EXIT,EAST);
 
-	w.attachAreas(9,10,NORTH,EAST);
+	w.addAdvisor(4, "A priest is standing by the statue, he approaches you and says:", "Oh my Gauss, you look totally lost.\nLet me give you some help, all free of cost.\nWhen you are lost and all around is black.\nTake two steps forward and one step back.");
+
 	//Finally call the arrangeWorld method to make the world ready for usage.
 	w.arrangeWorld();
 }

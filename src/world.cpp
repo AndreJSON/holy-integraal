@@ -8,10 +8,13 @@ qhi::Area* qhi::World::getStartingArea() const {
 }
 
 qhi::World::World() {
+	iq = 0;
 }
 
 qhi::World::~World() {
 	for(auto &a : areas)
+		delete a;
+	for(auto &a : actors)
 		delete a;
 }
 
@@ -36,6 +39,11 @@ void qhi::World::attachAreas(int index1, int index2, int direction1, int directi
 	areas[index2]->addNeighbour(areas[index1], direction2);
 }
 
+void qhi::World::addAdvisor(int index, std::string description, std::string advice) {
+	actors.push_back(new Advisor(description, advice)); 
+	areas[index]->setActor(actors.back());
+}
+
 void qhi::World::arrangeWorld() {
 	a = getStartingArea();
 }
@@ -46,6 +54,14 @@ qhi::Area* qhi::World::getCurrentArea() const {
 
 void qhi::World::setCurrentArea(Area *p) {
 	a = p;
+}
+
+int qhi::World::getIQ() const {
+	return iq;
+}
+
+void qhi::World::increaseIQ(int amount) {
+	iq += amount;
 }
 
 bool qhi::World::finalAreaReached() const {

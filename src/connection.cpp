@@ -7,8 +7,8 @@ qhi::Connection::Connection(std::string desc) : Area(desc) {
 qhi::Connection::~Connection() {
 }
 
-std::string qhi::Connection::getDescription() const {
-	return Area::getDescription() /*+ guardianAlive? guardian.getDescription() : ""*/; 
+std::string qhi::Connection::getDescription(int playerIQ) const {
+	return Area::getDescription(playerIQ) /*+ guardianAlive? guardian.getDescription() : ""*/; 
 }
 
 int qhi::Connection::getAreaType() const {

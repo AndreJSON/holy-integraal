@@ -13,7 +13,7 @@ namespace qhi {
 	public:
 		Area(std::string desc);
 		virtual ~Area();
-		virtual std::string getDescription() const;
+		virtual std::string getDescription(int playerIQ) const;
 		virtual int getAreaType() const = 0;
 		bool existsNeighbour(int direction) const;
 		Area* getNeighbour(int direction) const;
