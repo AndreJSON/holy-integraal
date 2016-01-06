@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := game.out
 CC = g++
 FLAGS = -std=c++11 -Wall -Wextra
-OBJS = world.o actor.o area.o open-area.o connection.o
+OBJS = world.o actor.o advisor.o riddler.o mathematician.o area.o open-area.o connection.o
 
 game.out: src/game.hpp src/game.cpp $(OBJS)
 	$(CC) $(FLAGS) -o game.out src/game.cpp $(OBJS)
@@ -13,6 +13,15 @@ world.o: src/world.hpp src/world.cpp
 
 actor.o: src/actor.hpp src/actor.cpp
 	$(CC) $(FLAGS) -c src/actor.cpp
+
+advisor.o: src/advisor.hpp src/advisor.cpp
+	$(CC) $(FLAGS) -c src/advisor.cpp
+
+riddler.o: src/riddler.hpp src/riddler.cpp
+	$(CC) $(FLAGS) -c src/riddler.cpp
+
+mathematician.o: src/mathematician.hpp src/mathematician.cpp
+	$(CC) $(FLAGS) -c src/mathematician.cpp
 
 area.o: src/area.hpp src/area.cpp
 	$(CC) $(FLAGS) -c src/area.cpp

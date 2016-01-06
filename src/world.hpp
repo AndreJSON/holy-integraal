@@ -1,5 +1,8 @@
 #pragma once
 #include "actor.hpp"
+#include "advisor.hpp"
+#include "riddler.hpp"
+#include "mathematician.hpp"
 #include "area.hpp"
 #include "open-area.hpp"
 #include "connection.hpp"
