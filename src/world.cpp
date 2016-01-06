@@ -40,10 +40,16 @@ void qhi::World::arrangeWorld() {
 	a = getStartingArea();
 }
 
-qhi::Area* qhi::World::getCurrentArea() {
+qhi::Area* qhi::World::getCurrentArea() const {
 	return a;
 }
 
 void qhi::World::setCurrentArea(Area *p) {
 	a = p;
+}
+
+bool qhi::World::finalAreaReached() const {
+	if (getCurrentArea() == areas.back())
+		return true;
+	return false;
 }

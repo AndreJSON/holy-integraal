@@ -13,15 +13,18 @@ using std::cout; using std::endl; using std::cin;
 int main(void) {
 	World w;
 	fillWorld(w);
-	bool playing = true;
 	introduce();
 
-	while(playing) {
+	while(true) {
 		cout << endl << w.getCurrentArea()->getDescription();
+		if(w.finalAreaReached()) {
+			endGame();
+			return 0;
+		}
 		handleOptions(w);
 	}
 
-	return 0;
+	return 1;
 }
 
 void qhi::handleOptions(World &w) {
@@ -85,6 +88,17 @@ void qhi::introduce() {
 	cout << "The Holy Integraal." << endl << endl << endl << endl;
 }
 
+void qhi::endGame() {
+	cout << endl;
+	cout << "- \"Don't be alarmed, I am merely enlightening you\" a voice says." << endl;
+	cout << "Slowly, but then all at once you feel like you understand everything around you." << endl;
+	cout << "- \"You are now ready to bring peace to this world\" the voice says." << endl;
+	cout << endl << endl;
+	cout << "|------------------------------------|" << endl;
+	cout << "|-------------- THE END -------------|" << endl;
+	cout << "|------------------------------------|" << endl << endl << endl << endl;
+}
+
 void qhi::fillWorld(World &w) {
 	w.addArea(TYPE_OPENAREA, "You are in the middle of nowhere."); 																//0
 	w.addArea(TYPE_OPENAREA, "You are at a road fork.");																		//1
@@ -94,6 +108,9 @@ void qhi::fillWorld(World &w) {
 	w.addArea(TYPE_OPENAREA, "You enter some sort of Bazaar. Merchants are all around you screaming to get their goods sold.");	//5
 	w.addArea(TYPE_OPENAREA, "You are at the edge of a huge dark forest.");														//6
 	w.addArea(TYPE_OPENAREA, "You wander through the forest. After a while you decide to stop. It is dark all around you.");	//7
+	w.addArea(TYPE_OPENAREA, "You wander through the forest. After a while you decide to stop. It is dark all around you.");	//8
+	w.addArea(TYPE_OPENAREA, "You wander through the forest. After a while you decide to stop. It is dark all around you.");	//9
+	w.addArea(TYPE_OPENAREA, "As you enter, you see an immensely strong lightsource hover in the middle of the room.");			//10											//99
 
 	w.attachAreas(0,1,SOUTH,NORTH);
 	w.attachAreas(0,4,WEST,EAST);
@@ -102,8 +119,13 @@ void qhi::fillWorld(World &w) {
 	w.attachAreas(2,5,EXIT,WEST);
 	w.attachAreas(5,6,EAST,WEST);
 	w.attachAreas(6,7,SOUTH,NORTH);
-	w.attachAreas(7,7,NORTH,WEST);
+	w.attachAreas(7,8,WEST,WEST);
+	w.attachAreas(7,8,EAST,EAST);
+	w.attachAreas(7,8,SOUTH,NORTH);
+	w.attachAreas(8,9,SOUTH,EAST);
+	w.attachAreas(9,9,WEST,SOUTH);
 
+	w.attachAreas(9,10,NORTH,EAST);
 	//Finally call the arrangeWorld method to make the world ready for usage.
 	w.arrangeWorld();
 }

@@ -18,7 +18,8 @@ namespace qhi {
 		//Attaches the area at index1 facing direction1 with the area at index2 facing direction2.
 		void attachAreas(int index1, int index2, int direction1, int direction2);
 		void arrangeWorld(); //Should be called when all initializations to the world have been done.
-		Area* getCurrentArea();
+		Area* getCurrentArea() const;
 		void setCurrentArea(Area *p);
+		bool finalAreaReached() const;
 	};
 }
