@@ -13,34 +13,33 @@ using std::cout; using std::endl; using std::cin;
 int main(void) {
 	World w;
 	fillWorld(w);
-	Area *a = w.getStartingArea();
 	bool playing = true;
 	introduce();
 
 	while(playing) {
-		cout << endl << a->getDescription();
-		handleOptions(&a);
+		cout << endl << w.getCurrentArea()->getDescription();
+		handleOptions(w);
 	}
 
 	return 0;
 }
 
-void qhi::handleOptions(Area **a) {
-	int paths = (**a).getAreaType() == 1? 4 : 2;
+void qhi::handleOptions(World &w) {
+	int paths = w.getCurrentArea()->getAreaType() == 1? 4 : 2;
 	cout << endl << endl << "What do you do?" << endl;
-	if((**a).getAreaType() == 1) { //open area
+	if(w.getCurrentArea()->getAreaType() == 1) { //open area
 		cout << "[1] Go north" << endl;
 		cout << "[2] Go east" << endl;
 		cout << "[3] Go south" << endl;
 		cout << "[4] Go west" << endl;
 	} else { //connection
-		cout << "[1] Continue on" << endl;
-		cout << "[2] Go back" << endl;
+		cout << "[1] Go back" << endl;
+		cout << "[2] Continue on" << endl;
 	}
 	int input = getInput(paths);
 	if (input <= paths) {
-		if((**a).existsNeighbour(input)) {
-			*a = (**a).getNeighbour(input);
+		if(w.getCurrentArea()->existsNeighbour(input)) {
+			w.setCurrentArea(w.getCurrentArea()->getNeighbour(input));
 		} else {
 			cout << endl << "It looks rather boring in that direction, so you decide to not go there." << endl;
 		}
@@ -104,4 +103,7 @@ void qhi::fillWorld(World &w) {
 	w.attachAreas(5,6,EAST,WEST);
 	w.attachAreas(6,7,SOUTH,NORTH);
 	w.attachAreas(7,7,NORTH,WEST);
+
+	//Finally call the arrangeWorld method to make the world ready for usage.
+	w.arrangeWorld();
 }

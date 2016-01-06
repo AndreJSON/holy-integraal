@@ -1,5 +1,12 @@
 #include "world.hpp"
 
+qhi::Area* qhi::World::getStartingArea() const {
+	if(!areas.empty()) {
+		return areas.front();
+	}
+	throw std::out_of_range("Tried to get starting area from empty world.");
+}
+
 qhi::World::World() {
 }
 
@@ -29,9 +36,14 @@ void qhi::World::attachAreas(int index1, int index2, int direction1, int directi
 	areas[index2]->addNeighbour(areas[index1], direction2);
 }
 
-qhi::Area* qhi::World::getStartingArea() const {
-	if(!areas.empty()) {
-		return areas.front();
-	}
-	throw std::out_of_range("Tried to get starting area from empty world.");
+void qhi::World::arrangeWorld() {
+	a = getStartingArea();
+}
+
+qhi::Area* qhi::World::getCurrentArea() {
+	return a;
+}
+
+void qhi::World::setCurrentArea(Area *p) {
+	a = p;
 }
