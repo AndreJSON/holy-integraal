@@ -11,5 +11,7 @@ namespace qhi {
 		virtual ~Riddler();
 		virtual std::string getDescription(int piq) const override;
 		virtual bool isDefeated(int piq) const override;
+		virtual std::vector<std::string> getConversationOptions(int iq) const override;
+		virtual bool answer(int) override;
 	};
 }

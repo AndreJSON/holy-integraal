@@ -20,6 +20,7 @@ namespace qhi {
 		void addNeighbour(Area* ap, int direction);
 		bool existsActor() const;
 		const Actor& getActor() const;
+		Actor& getActor(); //A non const version is needed aswell.
 		void setActor(Actor *ap);
 		virtual bool permittedDirection(int direction) const = 0;
 	};

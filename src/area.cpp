@@ -44,6 +44,12 @@ const qhi::Actor& qhi::Area::getActor() const {
 	return *npc;
 }
 
+qhi::Actor& qhi::Area::getActor() {
+	if(!hasActor)
+		throw std::out_of_range("Tried to get actor from an area that doesn't have an actor.");
+	return *npc;
+}
+
 void qhi::Area::setActor(Actor *ap) {
 	hasActor = true;
 	npc = ap;

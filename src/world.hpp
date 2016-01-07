@@ -25,6 +25,7 @@ namespace qhi {
 		void attachAreas(int index1, int index2, int direction1, int direction2);//Attaches the area at index1 facing direction1 with the area at index2 facing direction2.
 		void addAdvisor(int index, std::string description, std::string advice);
 		void addRiddler(int index, std::string description, std::string advice, std::string riddle);
+		void addConversation(int index, int ans, std::vector<std::string>);
 		void arrangeWorld(); //Should be called when all initializations to the world have been done.
 		Area* getCurrentArea() const;
 		void setCurrentArea(Area *p);

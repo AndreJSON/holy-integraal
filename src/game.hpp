@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 namespace qhi {
-	void handleOptions(World &w);
+	int handleOptions(World &w); //returns 0 if everything went as it should
 	void introduce();
 	void endGame();
 	int getInput(int);

@@ -15,3 +15,17 @@ std::string qhi::Riddler::getDescription(int piq) const {
 bool qhi::Riddler::isDefeated(int) const {
 	return defeated;
 }
+
+std::vector<std::string> qhi::Riddler::getConversationOptions(int iq) const {
+	if(isDefeated(iq))
+		return {};
+	return conversationOptions;
+}
+
+bool qhi::Riddler::answer(int ans) {
+	if(ans == rightAnswer) {
+		defeated = true;
+		return true;
+	}
+	return false;
+}

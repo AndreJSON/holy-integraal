@@ -21,14 +21,20 @@ int main(void) {
 			endGame();
 			return 0;
 		}
-		handleOptions(w);
+		if(handleOptions(w) != 0) {
+			return 1;
+		}
 	}
 
 	return 1;
 }
 
-void qhi::handleOptions(World &w) {
+int qhi::handleOptions(World &w) {
 	int paths = w.getCurrentArea()->getAreaType() == 1? 4 : 2;
+	int options = 0;
+	if(w.getCurrentArea()->existsActor()) {
+		options = w.getCurrentArea()->getActor().getConversationOptions(w.getIQ()).size();
+	}
 	cout << endl << endl << "What do you do?" << endl;
 	if(w.getCurrentArea()->getAreaType() == 1) { //open area
 		cout << "[1] Go north" << endl;
@@ -39,7 +45,10 @@ void qhi::handleOptions(World &w) {
 		cout << "[1] Go back" << endl;
 		cout << "[2] Continue on" << endl;
 	}
-	int input = getInput(paths);
+	for (int i = 0; i < options; i++) {
+		cout << "[" << (i+paths+1) << "]" << " " << w.getCurrentArea()->getActor().getConversationOptions(w.getIQ())[i] << endl;
+	}
+	int input = getInput(paths+options);
 	if (input <= paths) {
 		if(w.getCurrentArea()->existsNeighbour(input)) {
 			w.setCurrentArea(w.getCurrentArea()->getNeighbour(input));
@@ -47,8 +56,16 @@ void qhi::handleOptions(World &w) {
 			cout << endl << "It looks rather boring in that direction, so you decide to not go there." << endl;
 		}
 	} else {
-		input -= paths;
+		if(w.getCurrentArea()->getActor().answer(input-paths-1)){
+			cout << endl << "CORRECT!" << endl;
+		}
+		else {
+			cout << endl << "WRONG ANSWER!" << endl;
+			cout << "You feel the world around you turning dark and cold..." << endl;
+			return 1;
+		}
 	}
+	return 0;
 }
 
 int qhi::getInput(int numOfOptions) {
@@ -138,6 +155,7 @@ void qhi::fillWorld(World &w) {
 
 	w.addAdvisor(4, "A priest is standing by the statue, he approaches you and says:", "Oh my Gauss, you look totally lost.\nLet me give you some help, all free of cost.\nWhen you are lost and all around is black.\nTake two steps forward and one step back.");
 	w.addRiddler(2, "A mouse is blocking your path, he stares at you and says:", "You have proven yourself a true man.\nMove onwards and continue your plan.", "Welcome my fellow stranger,\nbeyond me lies only danger.\nIf passage requests thee,\na question you must answer me.\n\nCalling yourself a man,\nany person can.\nBut to put meaning behind such talk,\ndown how many roads must one walk?");
+	w.addConversation(2,2,{"A couple?", "About three fiddy?", "42 ofcourse", "1337 for sure", "I really don't know..."});
 	//Finally call the arrangeWorld method to make the world ready for usage.
 	w.arrangeWorld();
 }

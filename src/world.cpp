@@ -49,6 +49,12 @@ void qhi::World::addRiddler(int index, std::string description, std::string advi
 	areas[index]->setActor(actors.back());
 }
 
+void qhi::World::addConversation(int index, int ans, std::vector<std::string> opts) {
+	for(auto s : opts)
+		areas[index]->getActor().addConversationOption(s);
+	areas[index]->getActor().setAnswer(ans);
+}
+
 void qhi::World::arrangeWorld() {
 	a = getStartingArea();
 }
