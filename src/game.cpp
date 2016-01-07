@@ -24,8 +24,9 @@ int main(void) {
 		if(handleOptions(w) != 0) {
 			return 1;
 		}
+		cout << "---------------------------------------------" << endl;
+		cout << "---------------------------------------------" << endl;
 	}
-
 	return 1;
 }
 
@@ -37,20 +38,24 @@ int qhi::handleOptions(World &w) {
 	}
 	cout << endl << endl << "What do you do?" << endl;
 	if(w.getCurrentArea()->getAreaType() == 1) { //open area
+		cout << "[0] Check inventory" << endl;
 		cout << "[1] Go north" << endl;
 		cout << "[2] Go east" << endl;
 		cout << "[3] Go south" << endl;
 		cout << "[4] Go west" << endl;
 	} else { //connection
-		cout << "[1] Go back" << endl;
-		cout << "[2] Continue on" << endl;
+		cout << "[0] Check inventory" << endl;
+		cout << "[1] Go towards home" << endl;
+		cout << "[2] Go past the guard" << endl;
 	}
 	for (int i = 0; i < options; i++) {
 		cout << "[" << (i+paths+1) << "]" << " " << w.getCurrentArea()->getActor().getConversationOptions(w.getIQ())[i] << endl;
 	}
 	int input = getInput(paths+options);
 	if (input <= paths) {
-		if(w.getCurrentArea()->existsNeighbour(input)) {
+		if(input == 2 && w.getCurrentArea()->getAreaType() == 2 && !w.getCurrentArea()->getActor().isDefeated(w.getIQ())){
+			cout << "The guard moves up and blocks your path. It seems like you need to defeat it before moving in that direction." << endl;
+		} else if(w.getCurrentArea()->existsNeighbour(input)) {
 			w.setCurrentArea(w.getCurrentArea()->getNeighbour(input));
 		} else {
 			cout << endl << "It looks rather boring in that direction, so you decide to not go there." << endl;

@@ -6,8 +6,6 @@
 */
 namespace qhi {
 	class Connection : public Area {
-	private:
-		bool guardianDefeated;
 	public:
 		Connection(std::string desc);
 		virtual ~Connection();
