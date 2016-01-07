@@ -9,5 +9,6 @@ namespace qhi {
 		Cluescroll(std::string itemName, std::string itemClue);
 		virtual ~Cluescroll();
 		std::string getClue() const;
+		virtual int getType() const;
 	};
 }

@@ -9,5 +9,6 @@ namespace qhi {
 		Artifact(std::string itemName, int itemIQ);
 		virtual ~Artifact();
 		int getIQ() const;
+		virtual int getType() const;
 	};
 }

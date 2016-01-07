@@ -160,9 +160,14 @@ void qhi::fillWorld(World &w) {
 	w.attachAreas(13,14,EXIT,ENTRANCE);
 	w.attachAreas(14,15,EXIT,EAST);
 
-	w.addAdvisor(4, "A priest is standing by the statue, he approaches you and says:", "Oh my Gauss, you look totally lost.\nLet me give you some help, all free of cost.\nWhen you are lost and all around is black.\nTake two steps forward and one step back.");
-	w.addRiddler(2, "A mouse is standing in the way, he stares at you and says:", "You have proven yourself a true man.\nMove onwards and continue your plan.", "Welcome my fellow stranger,\nbeyond me lies only danger.\nIf passage requests thee,\na question you must answer me.\n\nCalling yourself a man,\nany person can.\nBut to put meaning behind such talk,\ndown how many roads must one walk?");
+	w.addRiddler(2, "A mouse is standing in the way, he stares at you and says:", "You have proven yourself a true man.\nMove onwards and continue your plan.", "Welcome my fellow stranger,\nbeyond me lies only danger.\nIf passage requests thee,\na question you must answer me.\nCalling yourself a man,\nany person can.\nBut to put meaning behind such talk,\ndown how many roads must one walk?");
 	w.addConversation(2,2,{"A couple?", "About three fiddy?", "42 ofcourse", "1337 for sure", "I really don't know..."});
+	w.addAdvisor(4, "A priest is standing by the statue, he approaches you and says:", "Oh my Gauss, you look totally lost.\nLet me give you some help, all free of cost.\nWhen you are lost and all around is black.\nTake two steps forward and one step back.");
+	w.addMathematician(5,128, "In the middle of the bazaar stands a mathematician. He has an IQ of: ", "He mocks you saying:\nThrough this market thousands upon thousands daily come,\nBut never in my life have I seen one so dumb", "He compliments you saying:\nI sincerly hope you accept my apology,\nnow I can see you clearly know a lot about astrology.", "Upon you final trial the questions will be three.\nWith them all you can't get help from me.\nBut on the last trial I know what to do,\nJust pick the answer that rhymes with barbecue.");
+	w.addRiddler(6, "A nasty creature, pale and stunted hops onto the path in front of you on says:", "A wild but lucky guess you have made.\nIt has spared you from tasting our blade.\nBut far more dangerous is the path beyond me\nWith a bear in each bush, and a noose from each tree.", "Alive without breath,\nas cold as death,\nnever thirsty,ever drinking,\nall in mail but never clinking\nNow tell me, what am I describing?");
+	w.addConversation(6,3,{"Ice", "A knight", "The sea", "A fish", "A corpse"});
+	w.addMathematician(5,-10, "In the corner of the room sits a fool dressed in motley. You can see that he is studying mathematics. He has an IQ of: ", "", "He compliments you saying:\nNow you look like a very intelligent mathematician,\nunlike me with my incurable condition.\nYou see I'm a fool and always will be,\nso all the others have given up on me.", 140);
+
 	//Finally call the arrangeWorld method to make the world ready for usage.
 	w.arrangeWorld();
 }

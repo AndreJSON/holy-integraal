@@ -15,6 +15,7 @@ namespace qhi {
 		std::vector<Area*> areas;
 		std::vector<Actor*> actors;
 		std::vector<Item*> items;
+		std::vector<Item*> inventory; //Never needs to be free'd because it does not own any unique pointers to objects.
 		Area *a;
 		Area* getStartingArea() const;
 		int iq;
@@ -26,6 +27,8 @@ namespace qhi {
 		void addAdvisor(int index, std::string description, std::string advice);
 		void addRiddler(int index, std::string description, std::string advice, std::string riddle);
 		void addConversation(int index, int ans, std::vector<std::string>);
+		void addMathematician(int index, int iq, std::string desc, std::string mock, std::string comp, std::string clue);
+		void addMathematician(int index, int iq, std::string desc, std::string mock, std::string comp, int itemIQ);
 		void arrangeWorld(); //Should be called when all initializations to the world have been done.
 		Area* getCurrentArea() const;
 		void setCurrentArea(Area *p);

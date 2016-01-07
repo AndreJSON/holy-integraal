@@ -10,3 +10,7 @@ qhi::Artifact::~Artifact() {
 int qhi::Artifact::getIQ() const {
 	return bonusIQ;
 }
+
+int qhi::Artifact::getType() const {
+	return 2;
+}

@@ -8,11 +8,13 @@ namespace qhi {
 	private:
 		int iq;
 		std::string compliment, mockery;
+		bool hasItem;
 		Item *reward;
 	public:
-		Mathematician(std::string desc, std::string comp, std::string mock, Item *rew);
+		Mathematician(std::string desc, int npcIQ, std::string comp, std::string mock, Item *rew);
 		virtual ~Mathematician();
 		virtual std::string getDescription(int piq) const override;
 		virtual bool isDefeated(int piq) const override;
+		virtual Item* surrenderItem();
 	};
 }

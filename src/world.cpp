@@ -16,6 +16,8 @@ qhi::World::~World() {
 		delete a;
 	for(auto &a : actors)
 		delete a;
+	for(auto &i : items)
+		delete i;
 }
 
 void qhi::World::addArea(int type, std::string desc){
@@ -55,6 +57,18 @@ void qhi::World::addConversation(int index, int ans, std::vector<std::string> op
 	areas[index]->getActor().setAnswer(ans);
 }
 
+void qhi::World::addMathematician(int index, int iq, std::string desc, std::string mock, std::string comp, std::string clue) {
+	items.push_back(new Cluescroll("An old parchment. The scribbles read:", clue));
+	actors.push_back(new Mathematician(desc, iq, comp, mock, items.back()));
+	areas[index]->setActor(actors.back());
+}
+
+void qhi::World::addMathematician(int index, int iq, std::string desc, std::string mock, std::string comp, int itemIQ) {
+	items.push_back(new Artifact("A beautiful artifact providing its owner with an IQ boost of:", itemIQ));
+	actors.push_back(new Mathematician(desc, iq, comp, mock, items.back()));
+	areas[index]->setActor(actors.back());
+}
+
 void qhi::World::arrangeWorld() {
 	a = getStartingArea();
 }
@@ -79,9 +93,11 @@ std::string qhi::World::getInventory() const {
 	std::string tmp  = "*********************************************\n";
 	tmp				+= "*                YOUR INVENTORY\n";
 	tmp				+= "*********************************************\n";
-	for(auto i : items) {
+	for(auto i : inventory) {
 		tmp += "******\n* ";
 		tmp += i->getName();
+		tmp += (i->getType()==1? "\n" + ((Cluescroll*)i)->getClue() : " " + std::to_string(((Artifact*)i)->getIQ()));
+		tmp += "\n";
 	}
 	tmp += 			   "*********************************************\n";
 	return tmp;
