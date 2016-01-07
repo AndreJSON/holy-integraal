@@ -82,6 +82,11 @@ void qhi::World::setCurrentArea(Area *p) {
 }
 
 int qhi::World::getIQ() const {
+	int tmp = iq;
+	for(auto i: inventory){
+		if(i->getType() == 2)
+			tmp += ((Artifact*)i)->getIQ();
+	}
 	return iq;
 }
 
@@ -89,12 +94,17 @@ void qhi::World::increaseIQ(int amount) {
 	iq += amount;
 }
 
+void qhi::World::addInventory(Item *i) {
+	inventory.push_back(i);
+}
+
 std::string qhi::World::getInventory() const {
 	std::string tmp  = "*********************************************\n";
+	tmp				+= "*                " + std::to_string(getIQ()) + "\n"; 
 	tmp				+= "*                YOUR INVENTORY\n";
 	tmp				+= "*********************************************\n";
 	for(auto i : inventory) {
-		tmp += "******\n* ";
+		tmp += "*\n* ";
 		tmp += i->getName();
 		tmp += (i->getType()==1? "\n" + ((Cluescroll*)i)->getClue() : " " + std::to_string(((Artifact*)i)->getIQ()));
 		tmp += "\n";

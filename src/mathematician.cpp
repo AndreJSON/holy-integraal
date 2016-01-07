@@ -5,7 +5,7 @@ qhi::Mathematician::Mathematician(std::string desc, int npcIQ, std::string comp,
 	mockery = mock;
 	reward = rew;
 	iq = npcIQ;
-	hasItem = true;
+	itemLeft = true;
 }
 
 qhi::Mathematician::~Mathematician() {
@@ -21,9 +21,17 @@ bool qhi::Mathematician::isDefeated(int piq) const {
 	return false;
 }
 
+bool qhi::Mathematician::hasItem() const {
+	return itemLeft;
+}
+
 qhi::Item* qhi::Mathematician::surrenderItem() {
-	if(hasItem == false)
+	if(hasItem() == false)
 		throw std::out_of_range("Tried to get item from a mathematician who had already given away his item.");
-	hasItem = false;
+	itemLeft = false;
 	return reward;
+}
+
+int qhi::Mathematician::getType() const {
+	return 2;
 }

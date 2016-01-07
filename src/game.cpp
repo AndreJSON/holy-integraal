@@ -16,7 +16,7 @@ int main(void) {
 	introduce();
 
 	while(true) {
-		cout << endl << w.getCurrentArea()->getDescription(w.getIQ());
+		printInfo(w);
 		if(w.finalAreaReached()) {
 			endGame();
 			return 0;
@@ -75,6 +75,14 @@ int qhi::handleOptions(World &w) {
 	return 0;
 }
 
+void qhi::printInfo(World &w) {
+	cout << endl << w.getCurrentArea()->getDescription(w.getIQ());
+	if(w.getCurrentArea()->existsActor() && w.getCurrentArea()->getActor().isDefeated(w.getIQ()) && w.getCurrentArea()->getActor().getType() == 2 && ((Mathematician&)w.getCurrentArea()->getActor()).hasItem()) {
+		cout << endl << "The mathematician gives you an item in admiration of your high IQ." << endl;
+		w.addInventory(((Mathematician&)w.getCurrentArea()->getActor()).surrenderItem());
+	}
+}
+
 int qhi::getInput(int numOfOptions) {
 	std::string input;
 	std::getline(cin,input);
@@ -127,7 +135,7 @@ void qhi::fillWorld(World &w) {
 	w.addArea(TYPE_OPENAREA, "You are in the middle of nowhere."); 																//0
 	w.addArea(TYPE_OPENAREA, "You are at a road fork.");																		//1
 	w.addArea(TYPE_CONNECTION, "You are on a long tortuous path.");																//2
-	w.addArea(TYPE_OPENAREA, "You see a tavern and decide to enter it. Inside ***");											//3
+	w.addArea(TYPE_OPENAREA, "You see a tavern and decide to enter it.");														//3
 	w.addArea(TYPE_OPENAREA, "You approach a beautiful statue of gold.");														//4
 	w.addArea(TYPE_OPENAREA, "You enter some sort of Bazaar. Merchants are all around you screaming to get their goods sold.");	//5
 	w.addArea(TYPE_CONNECTION, "You are at the edge of a huge dark forest.");													//6
@@ -162,11 +170,20 @@ void qhi::fillWorld(World &w) {
 
 	w.addRiddler(2, "A mouse is standing in the way, he stares at you and says:", "You have proven yourself a true man.\nMove onwards and continue your plan.", "Welcome my fellow stranger,\nbeyond me lies only danger.\nIf passage requests thee,\na question you must answer me.\nCalling yourself a man,\nany person can.\nBut to put meaning behind such talk,\ndown how many roads must one walk?");
 	w.addConversation(2,2,{"A couple?", "About three fiddy?", "42 ofcourse", "1337 for sure", "I really don't know..."});
+	w.addAdvisor(3, "A man stands up from one of the tables and walk over to you. He says:", "Haven't seen you around here before,\ndon't want to either so hit the door\nbut before you leave let me give you some advice\n42 is a number favoured by most mice.");
 	w.addAdvisor(4, "A priest is standing by the statue, he approaches you and says:", "Oh my Gauss, you look totally lost.\nLet me give you some help, all free of cost.\nWhen you are lost and all around is black.\nTake two steps forward and one step back.");
 	w.addMathematician(5,128, "In the middle of the bazaar stands a mathematician. He has an IQ of: ", "He mocks you saying:\nThrough this market thousands upon thousands daily come,\nBut never in my life have I seen one so dumb", "He compliments you saying:\nI sincerly hope you accept my apology,\nnow I can see you clearly know a lot about astrology.", "Upon you final trial the questions will be three.\nWith them all you can't get help from me.\nBut on the last trial I know what to do,\nJust pick the answer that rhymes with barbecue.");
 	w.addRiddler(6, "A nasty creature, pale and stunted hops onto the path in front of you on says:", "A wild but lucky guess you have made.\nIt has spared you from tasting our blade.\nBut far more dangerous is the path beyond me\nWith a bear in each bush, and a noose from each tree.", "Alive without breath,\nas cold as death,\nnever thirsty,ever drinking,\nall in mail but never clinking\nNow tell me, what am I describing?");
 	w.addConversation(6,3,{"Ice", "A knight", "The sea", "A fish", "A corpse"});
-	w.addMathematician(5,-10, "In the corner of the room sits a fool dressed in motley. You can see that he is studying mathematics. He has an IQ of: ", "", "He compliments you saying:\nNow you look like a very intelligent mathematician,\nunlike me with my incurable condition.\nYou see I'm a fool and always will be,\nso all the others have given up on me.", 140);
+	w.addRiddler(10, "There is an opening in the wall, but an old man is blocking it. He turns to you and says:", "You sure know a thing or two about math,\nso henceforth I will not be blocking your path.", "Answer me this if you care to pass me:\nIn an a prison with 14 children and 17 men,\nthe gauler is kind and gives everyone a hen.\nIn time the hens all have 7 chickens each,\nbut not soon after one dies from a leech.\nAnother 5 disapprear due to theft,\nso in the end, how many are left?");
+	w.addConversation(10,1,{"197","211","217", "231", "280"});
+	w.addMathematician(11,-10, "In the corner of the room sits a fool dressed in motley. You can see that he is studying mathematics. He has an IQ of: ", "", "He compliments you saying:\nNow you look like a very intelligent mathematician,\nunlike me with my incurable condition.\nYou see I'm a fool and always will be,\nso all the others have given up on me.", 140);
+	w.addRiddler(12,"An old man is blocking your path, he gazes straight into your eyes and says:", "One of the questions done.\nTwo more til you've won.", "If you wish the other side see,\n you must answer the questions three.\nFor the first question I ask merely your name,\nfor I wish to know who seeks the Integraals fame.");
+	w.addConversation(12,0,{"Arthur", "Lancelot", "Merlin", "Robin", "None of your business"});
+	w.addRiddler(13,"The old man is once again standing in your path, you have no idea how he got here. He gazes straight into your eyes and says:", "Two answers have been correct.\nA third one will give you my respect.", "The second question will be harder to do,\nit will be test whether your cause true.\nWhat are your intentions with the Graal,\nanswer wrong and your quest will fail.");
+	w.addConversation(13,1,{"To gain immense power", "To restore peace", "To sell it for a fortune"});
+	w.addRiddler(14,"Once again the old man is standing in fron of you. He gazes straight into your eyes and says:","You truly are the man to end these wars,\npreceed in there and the Graal is yours.","What is your favourite color?");
+	w.addConversation(14, 2, {"Red", "Green", "Blue", "A kind of yellow-ish orange"});
 
 	//Finally call the arrangeWorld method to make the world ready for usage.
 	w.arrangeWorld();

@@ -18,5 +18,6 @@ namespace qhi {
 		virtual void addConversationOption(std::string opt);
 		virtual bool answer(int ans);
 		virtual void setAnswer(int ans);
+		virtual int getType() const;
 	};
 }

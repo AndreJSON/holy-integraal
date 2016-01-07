@@ -25,3 +25,7 @@ bool qhi::Actor::answer(int ans) { //Kan inte vara const
 void qhi::Actor::setAnswer(int ans) {
 	rightAnswer = ans;
 }
+
+int qhi::Actor::getType() const {
+	return 1;
+}
