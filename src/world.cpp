@@ -75,6 +75,18 @@ void qhi::World::increaseIQ(int amount) {
 	iq += amount;
 }
 
+std::string qhi::World::getInventory() const {
+	std::string tmp  = "*********************************************\n";
+	tmp				+= "*                YOUR INVENTORY\n";
+	tmp				+= "*********************************************\n";
+	for(auto i : items) {
+		tmp += "******\n* ";
+		tmp += i->getName();
+	}
+	tmp += 			   "*********************************************\n";
+	return tmp;
+}
+
 bool qhi::World::finalAreaReached() const {
 	if (getCurrentArea() == areas.back())
 		return true;

@@ -31,6 +31,7 @@ namespace qhi {
 		void setCurrentArea(Area *p);
 		int getIQ() const;
 		void increaseIQ(int);
+		std::string getInventory() const;
 		bool finalAreaReached() const;
 	};
 }

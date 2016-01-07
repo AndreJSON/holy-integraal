@@ -53,7 +53,9 @@ int qhi::handleOptions(World &w) {
 	}
 	int input = getInput(paths+options);
 	if (input <= paths) {
-		if(input == 2 && w.getCurrentArea()->getAreaType() == 2 && !w.getCurrentArea()->getActor().isDefeated(w.getIQ())){
+		if(input == 0) {
+			cout << endl << w.getInventory() << endl;
+		} else if(input == 2 && w.getCurrentArea()->getAreaType() == 2 && !w.getCurrentArea()->getActor().isDefeated(w.getIQ())){
 			cout << "The guard moves up and blocks your path. It seems like you need to defeat it before moving in that direction." << endl;
 		} else if(w.getCurrentArea()->existsNeighbour(input)) {
 			w.setCurrentArea(w.getCurrentArea()->getNeighbour(input));
@@ -82,7 +84,7 @@ int qhi::getInput(int numOfOptions) {
 	} catch(...) {
 		num = -1;
 	}
-	if(num > 0 && num <= numOfOptions) {
+	if(num >= 0 && num <= numOfOptions) {
 		return num;
 	} else {
 		cout << "That is not a valid action. Please try again." << endl;
@@ -159,7 +161,7 @@ void qhi::fillWorld(World &w) {
 	w.attachAreas(14,15,EXIT,EAST);
 
 	w.addAdvisor(4, "A priest is standing by the statue, he approaches you and says:", "Oh my Gauss, you look totally lost.\nLet me give you some help, all free of cost.\nWhen you are lost and all around is black.\nTake two steps forward and one step back.");
-	w.addRiddler(2, "A mouse is blocking your path, he stares at you and says:", "You have proven yourself a true man.\nMove onwards and continue your plan.", "Welcome my fellow stranger,\nbeyond me lies only danger.\nIf passage requests thee,\na question you must answer me.\n\nCalling yourself a man,\nany person can.\nBut to put meaning behind such talk,\ndown how many roads must one walk?");
+	w.addRiddler(2, "A mouse is standing in the way, he stares at you and says:", "You have proven yourself a true man.\nMove onwards and continue your plan.", "Welcome my fellow stranger,\nbeyond me lies only danger.\nIf passage requests thee,\na question you must answer me.\n\nCalling yourself a man,\nany person can.\nBut to put meaning behind such talk,\ndown how many roads must one walk?");
 	w.addConversation(2,2,{"A couple?", "About three fiddy?", "42 ofcourse", "1337 for sure", "I really don't know..."});
 	//Finally call the arrangeWorld method to make the world ready for usage.
 	w.arrangeWorld();
