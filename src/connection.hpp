@@ -11,6 +11,7 @@ namespace qhi {
 		virtual ~Connection();
 		virtual std::string getDescription(int playerIQ) const override;
 		virtual int getAreaType() const override;
+		virtual std::vector<std::string> getMovementDirections() const override;
 		virtual bool permittedDirection(int direction) const override;
 	};
 }

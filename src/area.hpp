@@ -15,6 +15,7 @@ namespace qhi {
 		virtual ~Area();
 		virtual std::string getDescription(int playerIQ) const;
 		virtual int getAreaType() const = 0;
+		virtual std::vector<std::string> getMovementDirections() const = 0;
 		bool existsNeighbour(int direction) const;
 		Area* getNeighbour(int direction) const;
 		void addNeighbour(Area* ap, int direction);

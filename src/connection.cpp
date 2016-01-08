@@ -14,6 +14,10 @@ int qhi::Connection::getAreaType() const {
 	return 2;
 }
 
+std::vector<std::string> qhi::Connection::getMovementDirections() const {
+	return {"Go towards home", "Go past the guard"};
+}
+
 bool qhi::Connection::permittedDirection(int direction) const {
 	if(direction == 1 || direction == 2)
 		return true;

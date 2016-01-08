@@ -8,7 +8,7 @@ namespace qhi {
 	public:
 		Item(std::string);
 		virtual ~Item();
-		virtual std::string getName() const;
+		std::string getName() const; //Was supposed to be virtual but I forgot that implementation.
 		virtual int getType() const = 0;
 	};
 }

@@ -16,12 +16,12 @@ int main(void) {
 	introduce();
 
 	while(true) {
-		printInfo(w);
-		if(w.finalAreaReached()) {
+		printInfo(w); //Print info and descriptions of the players surroundings.
+		if(w.finalAreaReached()) { //Check if player has won.
 			endGame();
 			return 0;
 		}
-		if(handleOptions(w) != 0) {
+		if(handleOptions(w) != 0) {	//Deal with input and prints the options the player is able to take.
 			return 1;
 		}
 		cout << "---------------------------------------------" << endl;
@@ -31,22 +31,15 @@ int main(void) {
 }
 
 int qhi::handleOptions(World &w) {
-	int paths = w.getCurrentArea()->getAreaType() == 1? 4 : 2;
+	int paths = w.getCurrentArea()->getMovementDirections().size();
 	int options = 0;
 	if(w.getCurrentArea()->existsActor()) {
 		options = w.getCurrentArea()->getActor().getConversationOptions(w.getIQ()).size();
 	}
 	cout << endl << endl << "What do you do?" << endl;
-	if(w.getCurrentArea()->getAreaType() == 1) { //open area
-		cout << "[0] Check inventory" << endl;
-		cout << "[1] Go north" << endl;
-		cout << "[2] Go east" << endl;
-		cout << "[3] Go south" << endl;
-		cout << "[4] Go west" << endl;
-	} else { //connection
-		cout << "[0] Check inventory" << endl;
-		cout << "[1] Go towards home" << endl;
-		cout << "[2] Go past the guard" << endl;
+	cout << "[0] Check inventory" << endl;
+	for(int i = 0; i < paths; i++) {
+		cout << "[" << (i+1) << "] " << w.getCurrentArea()->getMovementDirections()[i] << endl;
 	}
 	for (int i = 0; i < options; i++) {
 		cout << "[" << (i+paths+1) << "]" << " " << w.getCurrentArea()->getActor().getConversationOptions(w.getIQ())[i] << endl;

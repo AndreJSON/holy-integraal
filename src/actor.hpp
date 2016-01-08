@@ -16,7 +16,7 @@ namespace qhi {
 		virtual bool isDefeated(int playerIQ) const = 0;
 		virtual std::vector<std::string> getConversationOptions(int) const;
 		virtual void addConversationOption(std::string opt);
-		virtual bool answer(int ans);
+		virtual bool answer(int ans);	//Everything that has to do with answer should maybe not belong to Actor, but be moved further down.
 		virtual void setAnswer(int ans);
 		virtual int getType() const;
 	};
